@@ -33,9 +33,6 @@ QByteArray VkApi::sendRequest(QString method, QList<QPair<QString, QString> > pa
 
     url.addQueryItem("access_token",accessToken);
 
-    if(!(method == "messages.getHistory"))
-        qDebug() << className + ".sendRequest() " + "Request url: " + url.toString();
-
     QNetworkRequest request(url);
 
     QNetworkReply *reply = networkManager->get(request);
@@ -46,7 +43,7 @@ QByteArray VkApi::sendRequest(QString method, QList<QPair<QString, QString> > pa
 
     QString str = QString::fromUtf8(reply->readAll());
     if(!(method == "messages.getHistory"))
-        qDebug() << className + ".sendRequest() " + "Reply received: " + str;
+        qDebug() << className + ".sendRequest(" + method + ") " + "Reply received: " + str;
 
     return str.toLocal8Bit();
 }
@@ -98,7 +95,7 @@ QVariantList VkApi::getUserFriends(QString uid, QString fields, QString name_cas
     return qlist;
 }
 
-QVariantList VkApi::getUsetHistory(QString uid, QString chat_id, QString offset, QString count)
+QVariantList VkApi::getUserHistory(QString uid, QString chat_id, QString offset, QString count)
 {
     QList<QPair<QString, QString> > params;
 

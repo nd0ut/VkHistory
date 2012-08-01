@@ -29,7 +29,7 @@ public:
     QVariantList getUsersInfo(QString uids, QString fields = NULL, QString name_case = "nom");
     QVariantList getUserFriends(QString uid, QString fields = NULL, QString name_case = "nom",
                                    QString order = "name");
-    QVariantList getUsetHistory(QString uid, QString chat_id, QString offset = NULL, QString count = NULL);
+    QVariantList getUserHistory(QString uid, QString chat_id, QString offset = NULL, QString count = NULL);
 
 signals:
     

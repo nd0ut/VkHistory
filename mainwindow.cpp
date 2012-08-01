@@ -117,7 +117,7 @@ void MainWindow::on_exportHistoryButton_clicked()
         ui->exportHistoryButton->setText("Buffering...");
 
         while(true) {
-            QVariantList qlist = api->getUsetHistory(item->statusTip(), QString("36450115"), offset, QString("99"));
+            QVariantList qlist = api->getUserHistory(item->statusTip(), QString("36450115"), offset, QString("99"));
             qlist.removeFirst();
 
             if(qlist.empty())
@@ -143,7 +143,7 @@ void MainWindow::on_exportHistoryButton_clicked()
             continue;
 
         QVariant this_user = api->getUsersInfo(userId, "first_name,last_name").first();
-        QVariant remote_user = api->getUsersInfo(fullList.first().toMap()["uid"].toString(), "first_name,last_name").first();
+        QVariant remote_user = api->getUsersInfo(item->statusTip(), "first_name,last_name").first();
 
         for(QVariantList::iterator it = fullList.end() - 1; it >= fullList.begin(); it--) {
             QVariantMap msgMap = it->toMap();
@@ -166,7 +166,7 @@ void MainWindow::on_exportHistoryButton_clicked()
 
             QDateTime date = QDateTime::fromTime_t(msgMap["date"].toInt());
 
-            headStr += date.toString("[hh:mm:zz][dd.MM.yyyy] ");
+            headStr += date.toString("[hh:mm:ss][dd.MM.yyyy] ");
             headStr += first_name + " " + last_name;
 
 

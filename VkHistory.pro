@@ -28,3 +28,6 @@ INCLUDEPATH += $$PWD/qjson-qjson/include
 DEPENDPATH += $$PWD/qjson-qjson/include
 
 win32: PRE_TARGETDEPS += $$PWD/qjson-qjson/lib/qjson.lib
+
+OTHER_FILES += \
+    HtmlBefore.txt
